@@ -5,10 +5,10 @@ func main() {
 	// Найти самый часто встречающийся в ней символ.
 	// Если несколько символов встречаются одинаково
 	// часто, то можно вывести любой.
-	solve1("affssdfasdfff")
+	// solve1("affssdfasdfff")
 }
 
-func solve1(str string) string {
+func solve1(str string) (string, int) {
 	max := 0
 	result := ""
 	counter := 0
@@ -24,7 +24,23 @@ func solve1(str string) string {
 			result = string(str[i])
 		}
 	}
-	return result
+	return result, max
+}
+
+func solve2(str string) (string, int) {
+	anscnt := 0
+	var ans string
+	dict := make(map[string]int)
+	for _, now := range str {
+		dict[string(now)] += 1
+	}
+	for key := range dict {
+		if dict[key] > anscnt {
+			anscnt = dict[key]
+			ans = key
+		}
+	}
+	return ans, anscnt
 }
 
 
